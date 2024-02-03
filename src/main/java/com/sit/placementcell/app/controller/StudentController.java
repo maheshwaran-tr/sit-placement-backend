@@ -130,6 +130,34 @@ public class StudentController {
         }
     }
 
+    @PutMapping("/update-placement-willing")
+    public boolean updatePlacementWilling(@RequestBody Map<String, String> data) {
+        try {
+            for (Map.Entry<String, String> entry : data.entrySet()) {
+                String rollNo = entry.getKey();
+                String status = entry.getValue();
+                System.out.println(rollNo);
+                System.out.println(status);
+                Student student = studentService.findByRollNo(rollNo);
+
+                if (student != null) {
+                    if ("yes".equals(status)) {
+                        student.setPlacementWilling("yes");
+                    } else if ("no".equals(status)) {
+                        student.setPlacementWilling("no");
+                    } else {
+                        System.out.println("Invalid status: " + status);
+                    }
+                    studentService.save(student);
+                } else {
+                    System.out.println("Student not found for rollNo: " + rollNo);
+                }
+            }
+            return true; // Return true after processing all entries
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 
 }

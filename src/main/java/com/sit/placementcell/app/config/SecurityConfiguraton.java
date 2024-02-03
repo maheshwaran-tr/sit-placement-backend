@@ -40,6 +40,7 @@ public class SecurityConfiguraton {
                                 .requestMatchers(DELETE,UrlFor.deleteStudents).permitAll()
                                 .requestMatchers(GET,UrlFor.studentByToken).permitAll()
                                 .requestMatchers(GET,UrlFor.studentsByDept).permitAll()
+                                .requestMatchers(GET,UrlFor.studentFilter).permitAll()
                                 .requestMatchers(GET,UrlFor.studentsByPlacementWilling).permitAll()
                                 .requestMatchers(POST,UrlFor.applyJob).permitAll()
                                 .requestMatchers(PUT,UrlFor.updatePlacementWilling).permitAll()

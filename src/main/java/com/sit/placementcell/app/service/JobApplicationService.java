@@ -33,7 +33,7 @@ public class JobApplicationService {
     }
 
     public List<Student> getStudentsByFilters(Integer studentId, Integer jobId, String departmentName, Integer statusId) {
-        return jobApplicationRepository.findStudentsByFilters(studentId, jobId, departmentName, statusId);
+        return jobApplicationRepository.findByStudentAndStatus(departmentName,statusId);
     }
 
     public JobAppliedStudents applyForJob(int jobId, int studentId) {

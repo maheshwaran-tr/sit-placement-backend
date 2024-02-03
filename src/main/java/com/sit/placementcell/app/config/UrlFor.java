@@ -8,10 +8,11 @@ public class UrlFor {
     static final String updateStudents = "sit/students/update";
     static final String deleteStudents = "sit/students/delete/{id}";
     static final String studentByToken = "sit/students/profile";
+    static final String studentFilter = "sit/students/filter";
     static final String studentsByDept = "sit/students/dept/{dept}";
     static final String studentsByPlacementWilling = "sit/students/get-placement-willing-list/{val}";
     static final String applyJob = "sit/students/apply-job";
-    static final String updatePlacementWilling = "sit/students/update-placement-willing/{val}";
+    static final String updatePlacementWilling = "sit/students/update-placement-willing";
     static final String allAppliedJobs = "sit/students/get-applied-jobs/{id}";
 
     // Staff Urls
