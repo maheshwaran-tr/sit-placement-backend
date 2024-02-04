@@ -52,6 +52,10 @@ public class SecurityConfiguraton {
                                 .requestMatchers(PUT,UrlFor.updateStaffs).permitAll()
                                 .requestMatchers(DELETE,UrlFor.deleteStaffs).permitAll()
                                 .requestMatchers(GET,UrlFor.staffByToken).permitAll()
+                                .requestMatchers(POST,UrlFor.approveAppliedStudents).permitAll()
+
+                                .requestMatchers(GET,UrlFor.getApprovedStudentsAdmin).permitAll()
+                                .requestMatchers(GET,UrlFor.getAllApplicationsAdmin).permitAll()
 
                                 .requestMatchers(GET,UrlFor.allJobs).permitAll()
                                 .requestMatchers(POST,UrlFor.addJobs).permitAll()

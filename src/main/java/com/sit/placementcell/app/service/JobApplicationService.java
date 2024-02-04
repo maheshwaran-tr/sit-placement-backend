@@ -1,10 +1,8 @@
 package com.sit.placementcell.app.service;
 
 
-import com.sit.placementcell.app.entity.JobAppliedStudents;
-import com.sit.placementcell.app.entity.JobPost;
-import com.sit.placementcell.app.entity.Status;
-import com.sit.placementcell.app.entity.Student;
+import com.sit.placementcell.app.entity.*;
+import com.sit.placementcell.app.repository.AdminJobApplicationRepository;
 import com.sit.placementcell.app.repository.JobApplicationRepository;
 import com.sit.placementcell.app.repository.JobPostRepository;
 import com.sit.placementcell.app.repository.StudentRepository;
@@ -20,24 +18,54 @@ public class JobApplicationService {
     private final JobPostRepository jobPostRepository;
     private final StudentRepository studentRepository;
     private final JobApplicationRepository jobApplicationRepository;
+    private final AdminJobApplicationRepository adminJobRepo;
 
     @Autowired
-    public JobApplicationService(JobPostRepository jobPostRepository, StudentRepository studentRepository, JobApplicationRepository jobApplicationRepository) {
+    public JobApplicationService(JobPostRepository jobPostRepository, StudentRepository studentRepository, JobApplicationRepository jobApplicationRepository, AdminJobApplicationRepository adminJobRepo) {
         this.jobPostRepository = jobPostRepository;
         this.studentRepository = studentRepository;
         this.jobApplicationRepository = jobApplicationRepository;
+        this.adminJobRepo = adminJobRepo;
     }
 
     public List<JobAppliedStudents> findAllByStudents(Integer studentId){
         return jobApplicationRepository.findByStudentStudentId(studentId);
     }
 
-    public List<Student> getStudentsByFilters(Integer studentId, Integer jobId, String departmentName, Integer statusId) {
+    public List<JobAppliedStudents> getStudentsByFilters(String departmentName, Integer statusId) {
         return jobApplicationRepository.findByStudentAndStatus(departmentName,statusId);
     }
 
-    public JobAppliedStudents applyForJob(int jobId, int studentId) {
+    public boolean approveAppliedStudents(List<JobAppliedStudents> studentsList){
+        System.out.println("1.****************");
+        try {
+            for(JobAppliedStudents application:studentsList){
+                int studentId = application.getStudent().getStudentId();
+                int jobId = application.getJobPost().getJobId();
+                AdminJobApplications existingRecord = adminJobRepo.findByJobPostAndStudent(studentId,jobId);
+                System.out.println(existingRecord);
+                if(existingRecord == null){
+                    System.out.println("1.****************");
+                    JobPost job = application.getJobPost();
+                    Student student = application.getStudent();
+                    if(isStudentEligibleForJob(student,job)){
+                        System.out.println("2.****************");
+                        AdminJobApplications as = new AdminJobApplications();
+                        as.setStudent(student);
+                        as.setJobPost(job);
+                        as.setStatus(getDefaultApplicationStatus());
+                        adminJobRepo.save(as);
+                    }
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
+
+    public JobAppliedStudents applyForJob(int jobId, int studentId) {
         JobAppliedStudents existingRecord = jobApplicationRepository.findByJobPostAndStudent(studentId,jobId);
         if(existingRecord == null) {
             Optional<JobPost> optionalJobPost = jobPostRepository.findById(jobId);

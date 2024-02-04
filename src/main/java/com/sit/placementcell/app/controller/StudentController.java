@@ -44,14 +44,7 @@ public class StudentController {
         return ResponseEntity.ok(jobApplicationService.findAllByStudents(id));
     }
 
-    @PostMapping("/filter")
-    public ResponseEntity<List<Student>> getStudentsByFilter(@RequestBody JobFilterFormat jobFilterFormat){
-        Integer jobId = jobFilterFormat.getJobId();
-        Integer studentId = jobFilterFormat.getStudentId();
-        Integer statusId = jobFilterFormat.getStatusId();
-        String deptName = jobFilterFormat.getDept();
-        return ResponseEntity.ok(jobApplicationService.getStudentsByFilters(studentId,jobId,deptName,statusId));
-    }
+
 
     @PostMapping("/apply-job")
     public ResponseEntity<JobAppliedStudents> applyForJob(@RequestBody Map<String, Integer> request) {

@@ -1,6 +1,9 @@
 package com.sit.placementcell.app.controller;
 
+import com.sit.placementcell.app.entity.JobAppliedStudents;
+import com.sit.placementcell.app.entity.JobFilterFormat;
 import com.sit.placementcell.app.entity.Staff;
+import com.sit.placementcell.app.service.JobApplicationService;
 import com.sit.placementcell.app.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +12,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/sit/staffs")
 public class StaffController {
+
+    @Autowired
+    private JobApplicationService jobApplicationService;
 
     @Autowired
     private final StaffService staffService;
@@ -31,6 +38,26 @@ public class StaffController {
             return ResponseEntity.ok(null);
         }
 
+    }
+
+    @PostMapping("/get-student-by-dept-sts")
+    public ResponseEntity<List<JobAppliedStudents>> getStudentsByFilter(@RequestBody JobFilterFormat jobFilterFormat){
+        Integer statusId = jobFilterFormat.getStatusId();
+        String deptName = jobFilterFormat.getDept();
+        return ResponseEntity.ok(jobApplicationService.getStudentsByFilters(deptName,statusId));
+    }
+
+    @PostMapping("/approve-applied-students")
+    public ResponseEntity<String> approveStudents(@RequestBody Map<String,List<JobAppliedStudents>> requestData){
+        List<JobAppliedStudents> jobAppliedStudentsList = requestData.get("data");
+        System.out.println(jobAppliedStudentsList);
+        if(jobApplicationService.approveAppliedStudents(jobAppliedStudentsList)){
+            System.out.println("DONE");
+            return ResponseEntity.ok("Approved all students");
+        }else{
+            System.out.println("NOT DONE");
+            return ResponseEntity.ok("Failed to approve");
+        }
     }
 
     @GetMapping("/all")

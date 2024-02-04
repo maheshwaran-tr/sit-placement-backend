@@ -39,7 +39,7 @@ public class JobController {
         }
     }
 
-    @PostMapping("/post-job")
+    @PostMapping("/add")
     public ResponseEntity<JobPost> postJob(@RequestBody JobPost theJob){
         try{
             theJob.setJobId(0);

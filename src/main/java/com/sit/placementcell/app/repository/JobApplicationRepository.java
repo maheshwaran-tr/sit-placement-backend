@@ -21,8 +21,8 @@ public interface JobApplicationRepository extends JpaRepository<JobAppliedStuden
 
     List<JobAppliedStudents> findByStudentStudentId(int studentId);
 
-    @Query("SELECT j.student FROM JobAppliedStudents j WHERE j.student.department= :department AND j.status.statusId = :statusId")
-    List<Student> findByStudentAndStatus(
+    @Query("SELECT j FROM JobAppliedStudents j WHERE j.student.department= :department AND j.status.statusId = :statusId")
+    List<JobAppliedStudents> findByStudentAndStatus(
             @Param("department") String department,
             @Param("statusId") Integer statusId
     );

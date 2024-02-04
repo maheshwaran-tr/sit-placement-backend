@@ -21,11 +21,14 @@ public class UrlFor {
     static final String updateStaffs = "sit/staffs/update";
     static final String deleteStaffs = "sit/staffs/delete/{id}";
     static final String staffByToken = "sit/staffs/profile";
-
+    static final String approveAppliedStudents = "sit/staffs/approve-applied-students";
 
     // Job Urls
     static final String allJobs = "sit/jobs/all";
     static final String addJobs = "sit/jobs/add";
     static final String updateJobs = "sit/jobs/update";
     static final String deleteJobs = "sit/jobs/delete/{id}";
+
+    static final String getApprovedStudentsAdmin = "sit/admin/get-student-by-dept-sts/{statusId}";
+    static final String getAllApplicationsAdmin = "sit/admin/get-all-applications";
 }

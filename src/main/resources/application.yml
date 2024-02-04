@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/sit_database
-    username: root
-    password: sit@csd
+    username: sit
+    password: sit
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
