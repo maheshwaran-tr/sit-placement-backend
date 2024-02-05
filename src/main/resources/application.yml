@@ -1,9 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/sit_database
-    username: sit
-    password: sit
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://sitdatabase.c7ou42eg2owg.ap-southeast-2.rds.amazonaws.com:3306/sit_database
+    username: root
+    password: sitappadmin
 
   jpa:
     hibernate:

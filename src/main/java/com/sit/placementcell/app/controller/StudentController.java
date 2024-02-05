@@ -45,12 +45,22 @@ public class StudentController {
     }
 
 
+    @PostMapping("/check-already-applied")
+    public ResponseEntity<Boolean> checkAlreadyApplied(@RequestBody Map<String,Integer> request){
+        int jobId = request.get("jobId");
+        int studentId = request.get("studentId");
+        return ResponseEntity.ok(jobApplicationService.isAlreadyApplied(jobId,studentId));
+    }
+
 
     @PostMapping("/apply-job")
     public ResponseEntity<JobAppliedStudents> applyForJob(@RequestBody Map<String, Integer> request) {
         int jobId = request.get("jobId");
         int studentId = request.get("studentId");
         JobAppliedStudents js = jobApplicationService.applyForJob(jobId,studentId);
+        if(js==null){
+            return ResponseEntity.ok(null);
+        }
         return ResponseEntity.ok(js);
     }
 

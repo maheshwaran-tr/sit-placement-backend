@@ -65,6 +65,14 @@ public class JobApplicationService {
     }
 
 
+    public boolean isAlreadyApplied(int jobId, int studentId){
+        JobAppliedStudents existingRecord = jobApplicationRepository.findByJobPostAndStudent(studentId,jobId);
+        if(existingRecord == null){
+            return false;
+        }
+        return true;
+    }
+
     public JobAppliedStudents applyForJob(int jobId, int studentId) {
         JobAppliedStudents existingRecord = jobApplicationRepository.findByJobPostAndStudent(studentId,jobId);
         if(existingRecord == null) {
@@ -90,6 +98,8 @@ public class JobApplicationService {
                     return null;
                 }
             }
+        }else{
+            return null;
         }
         return null;
     }

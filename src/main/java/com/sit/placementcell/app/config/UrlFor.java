@@ -14,6 +14,7 @@ public class UrlFor {
     static final String applyJob = "sit/students/apply-job";
     static final String updatePlacementWilling = "sit/students/update-placement-willing";
     static final String allAppliedJobs = "sit/students/get-applied-jobs/{id}";
+    static final String checkAlreadyApplied = "sit/students/check-already-applied";
 
     // Staff Urls
     static final String allStaffs = "sit/staffs/all";

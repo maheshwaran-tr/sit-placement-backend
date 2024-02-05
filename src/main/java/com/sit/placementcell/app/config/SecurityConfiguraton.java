@@ -46,6 +46,7 @@ public class SecurityConfiguraton {
                                 .requestMatchers(PUT,UrlFor.updatePlacementWilling).permitAll()
                                 .requestMatchers(POST,"sit/students/filter").permitAll()
                                 .requestMatchers(GET,UrlFor.allAppliedJobs).permitAll()
+                                .requestMatchers(POST,UrlFor.checkAlreadyApplied).permitAll()
 
                                 .requestMatchers(GET,UrlFor.allStaffs).permitAll()
                                 .requestMatchers(POST,UrlFor.addStaffs).permitAll()
