@@ -27,9 +27,17 @@ public interface JobApplicationRepository extends JpaRepository<JobAppliedStuden
             @Param("statusId") Integer statusId
     );
 
+    @Query("SELECT j FROM JobAppliedStudents j WHERE j.jobPost.jobId = :jobId AND j.status.statusId = :statusId")
+    List<JobAppliedStudents> findByJobAndStatus(
+            @Param("jobId") Integer jobId,
+            @Param("statusId") Integer statusId
+    );
+
     @Query("SELECT j FROM JobAppliedStudents j WHERE j.student.studentId = :studentId AND j.jobPost.jobId = :jobId")
     JobAppliedStudents findByJobPostAndStudent(
             @Param("studentId") Integer studentId,
             @Param("jobId") Integer jobId
     );
+
+    void deleteByJobPostJobId(Integer jobId);
 }

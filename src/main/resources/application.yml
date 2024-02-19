@@ -10,4 +10,6 @@ spring:
     show-sql: true
 
 server:
-  port: 7070
+  port: 8080
+
+# sitdatabase.c7ou42eg2owg.ap-southeast-2.rds.amazonaws.com

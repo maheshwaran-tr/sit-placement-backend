@@ -28,6 +28,12 @@ public class JobApplicationService {
         this.adminJobRepo = adminJobRepo;
     }
 
+    public List<AdminJobApplications> findAllByJobAndStatus(Integer jobId,Integer statusId){
+
+        return adminJobRepo.findByJobAndStatus(jobId,statusId);
+    }
+
+
     public List<JobAppliedStudents> findAllByStudents(Integer studentId){
         return jobApplicationRepository.findByStudentStudentId(studentId);
     }
