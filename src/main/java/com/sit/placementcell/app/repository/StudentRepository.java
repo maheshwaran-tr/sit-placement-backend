@@ -8,7 +8,6 @@ import java.util.Optional;
 
 public interface StudentRepository extends JpaRepository<Student,Integer> {
 
-
     List<Student> findAllByDepartmentIgnoreCase(String department);
 
     List<Student> findAllByPlacementWillingIgnoreCase(String placementWilling);
