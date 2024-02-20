@@ -35,6 +35,7 @@ public class SecurityConfiguraton {
                                 .permitAll()
 
                                 .requestMatchers(GET, UrlFor.allStudents).permitAll()
+//                                .requestMatchers(GET, UrlFor.allStudents).hasAnyAuthority("ROLE_STUDENT","ROLE_STAFF","ROLE_ADMIN")
                                 .requestMatchers(POST,UrlFor.addStudents).permitAll()
                                 .requestMatchers(PUT,UrlFor.updateStudents).permitAll()
                                 .requestMatchers(DELETE,UrlFor.deleteStudents).permitAll()
@@ -44,9 +45,9 @@ public class SecurityConfiguraton {
                                 .requestMatchers(GET,UrlFor.studentsByPlacementWilling).permitAll()
                                 .requestMatchers(POST,UrlFor.applyJob).permitAll()
                                 .requestMatchers(PUT,UrlFor.updatePlacementWilling).permitAll()
-                                .requestMatchers(POST,"sit/students/filter").permitAll()
                                 .requestMatchers(GET,UrlFor.allAppliedJobs).permitAll()
                                 .requestMatchers(POST,UrlFor.checkAlreadyApplied).permitAll()
+                                .requestMatchers(POST,UrlFor.getSelectedList).permitAll()
 
                                 .requestMatchers(GET,UrlFor.allStaffs).permitAll()
                                 .requestMatchers(POST,UrlFor.addStaffs).permitAll()

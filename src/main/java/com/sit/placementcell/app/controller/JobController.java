@@ -50,7 +50,7 @@ public class JobController {
         }
     }
 
-    @PutMapping("/update-job")
+    @PutMapping("/update")
     public ResponseEntity<JobPost> updateJob(@RequestBody JobPost theJob){
         try{
             return ResponseEntity.ok(jobPostService.save(theJob));
@@ -59,7 +59,7 @@ public class JobController {
         }
     }
 
-    @DeleteMapping("/delete-job/{jobId}")
+    @DeleteMapping("/delete/{jobId}")
     public ResponseEntity<String> deleteJob(@PathVariable int jobId){
         try{
             jobPostService.delete(jobId);
@@ -68,5 +68,4 @@ public class JobController {
             return ResponseEntity.ok(null);
         }
     }
-
 }

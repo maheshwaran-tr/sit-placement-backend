@@ -21,5 +21,11 @@ public interface AdminJobApplicationRepository extends JpaRepository<AdminJobApp
             @Param("jobId") Integer jobId
     );
 
+    @Query("SELECT j FROM AdminJobApplications j WHERE j.jobPost.jobId = :jobId AND j.status.statusId = :statusId")
+    List<AdminJobApplications> findByJobAndStatus(
+            @Param("jobId") Integer jobId,
+            @Param("statusId") Integer statusId
+    );
 
+    void deleteByJobPostJobId(Integer jobId);
 }

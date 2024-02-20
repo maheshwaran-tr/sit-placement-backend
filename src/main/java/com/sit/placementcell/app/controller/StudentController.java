@@ -1,8 +1,8 @@
 package com.sit.placementcell.app.controller;
 
 
+import com.sit.placementcell.app.entity.AdminJobApplications;
 import com.sit.placementcell.app.entity.JobAppliedStudents;
-import com.sit.placementcell.app.entity.JobFilterFormat;
 import com.sit.placementcell.app.entity.Student;
 import com.sit.placementcell.app.service.JobApplicationService;
 import com.sit.placementcell.app.service.StudentService;
@@ -162,5 +162,18 @@ public class StudentController {
         }
     }
 
+    @PostMapping("/get-selected-students")
+    public ResponseEntity<List<AdminJobApplications>> getSelectedStudents(@RequestBody Map<String, Integer> request){
+        Integer jobId = request.get("jobId");
+        Integer statusId = request.get("statusId");
+        System.out.println(jobId);
+        System.out.println(statusId);
+        List<AdminJobApplications> selectedList = jobApplicationService.findAllByJobAndStatus(jobId,statusId);
+        if(selectedList == null){
+            return ResponseEntity.ok(null);
+        }else{
+            return ResponseEntity.ok(selectedList);
+        }
+    }
 
 }
