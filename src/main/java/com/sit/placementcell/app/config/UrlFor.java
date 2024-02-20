@@ -31,6 +31,11 @@ public class UrlFor {
     static final String updateJobs = "sit/jobs/update";
     static final String deleteJobs = "sit/jobs/delete/{id}";
 
+    // image urls
+    static final String uploadImage = "sit/images/upload-img";
+    static final String getImageByUsername = "sit/images/img/{name}";
+
+    // admin urls
     static final String getApprovedStudentsAdmin = "sit/admin/get-student-by-dept-sts/{statusId}";
     static final String getAllApplicationsAdmin = "sit/admin/get-all-applications";
 }

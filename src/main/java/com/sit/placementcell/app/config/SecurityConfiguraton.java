@@ -64,6 +64,8 @@ public class SecurityConfiguraton {
                                 .requestMatchers(PUT,UrlFor.updateJobs).permitAll()
                                 .requestMatchers(DELETE,UrlFor.deleteJobs).permitAll()
 
+                                .requestMatchers(POST,UrlFor.uploadImage).permitAll()
+                                .requestMatchers(GET,UrlFor.getImageByUsername).permitAll()
 
                                 .anyRequest()
                                 .authenticated()

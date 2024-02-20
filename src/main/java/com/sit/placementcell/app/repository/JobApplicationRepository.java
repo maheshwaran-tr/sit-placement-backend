@@ -40,4 +40,6 @@ public interface JobApplicationRepository extends JpaRepository<JobAppliedStuden
     );
 
     void deleteByJobPostJobId(Integer jobId);
+
+
 }

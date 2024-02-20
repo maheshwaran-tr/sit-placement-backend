@@ -79,7 +79,7 @@ public class JobApplicationService {
         return true;
     }
 
-    public JobAppliedStudents applyForJob(int jobId, int studentId) {
+    public String applyForJob(int jobId, int studentId) {
         JobAppliedStudents existingRecord = jobApplicationRepository.findByJobPostAndStudent(studentId,jobId);
         if(existingRecord == null) {
             Optional<JobPost> optionalJobPost = jobPostRepository.findById(jobId);
@@ -98,16 +98,16 @@ public class JobApplicationService {
                     jobAppliedStudents.setStatus(getDefaultApplicationStatus()); // You need to implement this method
 
                     jobApplicationRepository.save(jobAppliedStudents);
-                    return jobAppliedStudents;
+                    return "Applied Successfully";
                 } else {
                     // Student is not eligible for the job
-                    return null;
+                    return "Not eligible";
                 }
             }
         }else{
-            return null;
+            return "Already Applied";
         }
-        return null;
+        return "Unknown Exception from - ApplyJob";
     }
 
     private Status getDefaultApplicationStatus() {

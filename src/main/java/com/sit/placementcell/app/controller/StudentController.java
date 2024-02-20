@@ -54,13 +54,10 @@ public class StudentController {
 
 
     @PostMapping("/apply-job")
-    public ResponseEntity<JobAppliedStudents> applyForJob(@RequestBody Map<String, Integer> request) {
+    public ResponseEntity<String> applyForJob(@RequestBody Map<String, Integer> request) {
         int jobId = request.get("jobId");
         int studentId = request.get("studentId");
-        JobAppliedStudents js = jobApplicationService.applyForJob(jobId,studentId);
-        if(js==null){
-            return ResponseEntity.ok(null);
-        }
+        String js = jobApplicationService.applyForJob(jobId,studentId);
         return ResponseEntity.ok(js);
     }
 
